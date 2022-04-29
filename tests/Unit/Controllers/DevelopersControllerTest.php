@@ -15,7 +15,7 @@ class DevelopersControllerTest extends TestCase
     public function testGetAllDevelopers()
     {
         $controller = $this->makeController();
-        $response = $controller->getAll();
+        $response = $controller->getAll(request());
 
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
