@@ -50,4 +50,6 @@
         - migrations
         - seeders
             - Testing
-   
+
+### Preview
+![](docs/imgs/developers.png)
