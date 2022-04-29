@@ -19,9 +19,9 @@ class DevelopersController extends BaseController
         $this->business = $business;
     }
 
-    public function getAll(): JsonResponse
+    public function getAll(Request $request): JsonResponse
     {
-        return $this->createResponse('Developers get with success.', $this->business->getAll());
+        return $this->createResponse('Developers get with success.', $this->business->getAll($request->all()));
     }
 
     public function get(int $id): JsonResponse

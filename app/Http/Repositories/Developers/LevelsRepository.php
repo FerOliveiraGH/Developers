@@ -15,11 +15,22 @@ class LevelsRepository
         $this->repository = $repository;
     }
 
-    public function getAll(): array
+    public function getAll(int $per_page = 15): array
     {
         $query = $this->model->newQuery();
 
-        return $query->paginate()->toArray();
+        $query->select('levels.*');
+
+        $query->selectRaw('COUNT(developers.id) AS developers');
+
+        $query->leftJoin('developers', function($query) {
+            $query->on('developers.nivel_id', '=', 'levels.id');
+            $query->where('developers.deleted_at', '=', null);
+        });
+
+        $query->groupBy('levels.id');
+
+        return $query->paginate($per_page)->toArray();
     }
 
     public function get(int $id): array

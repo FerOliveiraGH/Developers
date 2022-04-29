@@ -14,7 +14,7 @@ class DevelopersRepository
         $this->model = $model;
     }
 
-    public function getAll(): array
+    public function getAll(int $per_page): array
     {
         $query = $this->model->newQuery();
 
@@ -22,7 +22,7 @@ class DevelopersRepository
 
         $query->join('levels', 'levels.id', '=', 'developers.nivel_id');
 
-        return $query->paginate()->toArray();
+        return $query->paginate($per_page)->toArray();
     }
 
     public function get(int $id): array

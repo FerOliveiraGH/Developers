@@ -14,9 +14,9 @@ class DevelopersBusiness extends BaseBusiness
         $this->repository = $repository;
     }
 
-    public function getAll(): array
+    public function getAll(array $data): array
     {
-        $response = $this->repository->getAll();
+        $response = $this->repository->getAll($data['per_page'] ?? 15);
 
         return $this->pagination(
             $response['data'],

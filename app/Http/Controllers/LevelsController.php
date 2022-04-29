@@ -19,9 +19,9 @@ class LevelsController extends BaseController
         $this->business = $business;
     }
 
-    public function getAll(): JsonResponse
+    public function getAll(Request $request): JsonResponse
     {
-        $response = $this->business->getAll();
+        $response = $this->business->getAll($request->all());
 
         return $this->createResponse('Levels get with success.', $response);
     }
